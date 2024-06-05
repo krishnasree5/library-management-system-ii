@@ -17,6 +17,8 @@
             <a href="{% url 'books:search' %}?query={{query}}&category={{category.id}}"><li>{{category.name}}</li></a>
             {% endfor %}
           </ul>
+
+          <a href="{% url 'books:search' %}"><button>Clear</button></a>
         
       </div>
       <div class="col">
