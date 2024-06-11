@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
         ('Student', 'student'),
         ('Staff', 'staff')
     ]
-    type_is = models.CharField(max_length=10, choices=TYPE_CHOICES,default='student')
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES,default='student')
 
     def __str__(self):
         return self.username

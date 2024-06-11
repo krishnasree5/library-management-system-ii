@@ -5,7 +5,7 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'type_is'
+        'type'
     )
 
     fieldsets = (
@@ -25,7 +25,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('last_login', 'date_joined')
         }),
         ('Additional info', {
-            'fields': ('type_is',)
+            'fields': ('type',)
         })
     )
 
