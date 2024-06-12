@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<div>
+    {% for alert in alerts %}
+        <div style="background-color: aliceblue;">
+            <p>User: {{ alert.user }}</p>
+            <p>Book: {{ alert.book }}</p>
+            <p>Issue Date: {{ alert.issue_date }}</p>
+            <p>Return Date: {{ alert.return_date }}</p>
+            <p>Due: {{ alert.issue_date|timesince:alert.return_date }}</p>
+            {% if request.user.type == 'Staff' %}
+            <a href="{% url 'issue:edit' alert.id %}"><button>Edit</button></a>
+            <a href="{% url 'issue:delete' alert.id %}"><button>Delete</button></a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

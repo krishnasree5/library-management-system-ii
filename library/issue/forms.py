@@ -6,7 +6,7 @@ from django import forms
 class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
-        fields = ('username', 'book_title', 'Due')
+        fields = ('username', 'book_title', 'due')
 
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Enter Username'
@@ -16,7 +16,7 @@ class IssueForm(forms.ModelForm):
         'placeholder': 'Enter Book Title'
     }))
 
-    Due = forms.ChoiceField(widget=forms.RadioSelect, choices=Issue.STATUS_CHOICES)
+    due = forms.ChoiceField(widget=forms.RadioSelect, choices=Issue.STATUS_CHOICES)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -37,3 +37,11 @@ class IssueForm(forms.ModelForm):
         cleaned_data['user'] = user
         cleaned_data['book'] = book
         return cleaned_data
+    
+class EditForm(forms.ModelForm):
+    due = forms.ChoiceField(widget=forms.RadioSelect, choices=Issue.STATUS_CHOICES)
+    
+    class Meta:
+        model = Issue
+        fields = ('due',)
+    

@@ -21,7 +21,7 @@
               {% if request.user.type == 'Staff' %}
                 <a href="{% url 'issue:new' %}" class="btn btn-primary">Add Issue</a>                
               {% endif %}
-              <a href="#" class="btn btn-primary">Notifications</a>
+              <a href="{% url 'issue:notifications' %}" class="btn btn-primary">Notifications</a>
               <form method="post" action="{% url 'main:logout' %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-secondary">Logout</button>
