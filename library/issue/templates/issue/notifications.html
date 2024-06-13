@@ -4,6 +4,11 @@
 
 {% block content %}
 <div>
+    <form method="get" action="{% url 'issue:notifications' %}">
+        <input type="text" name="query" value="{{query}}" placeholder="Search by user or book ">
+        <button type="submit">Search</button>
+    </form>
+    <a class="btn btn-primary" href="{% url 'issue:notifications' %}">Clear</a>
     {% for alert in alerts %}
         <div style="background-color: aliceblue;">
             <p>User: {{ alert.user }}</p>

@@ -64,13 +64,16 @@ def delete(request, pk):
 
 @login_required
 def notifications(request):
+    alerts = Issue.objects.filter(due='yes')
     
-    if request.user.type == 'Student':
-        alerts = Issue.objects.filter(Q(user=request.user) & Q(due='yes'))
+    query = request.GET.get('query', '')
+    if query:
+        alerts = alerts.filter(Q(user__username__icontains=query) | Q(book__title__icontains=query))
 
-    elif request.user.type == 'Staff':
-        alerts = Issue.objects.filter(due='yes')
+    if request.user.type == 'Student':
+        alerts = Issue.objects.filter(Q(user=request.user))
 
     return render(request, 'issue/notifications.html', {
+        'query': query,
         'alerts': alerts
     })
