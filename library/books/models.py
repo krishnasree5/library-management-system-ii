@@ -17,8 +17,9 @@ class Book(models.Model):
     isbn = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, related_name= 'books', on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000, default='')
     publisher = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, related_name= 'books', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='book-images', blank=True, null=True)
     date_added = models.DateField(auto_now_add=True)
 
