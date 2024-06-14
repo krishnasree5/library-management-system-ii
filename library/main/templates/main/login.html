@@ -3,11 +3,38 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" action="." class="p-4 border rounded shadow-sm">
+                {% csrf_token %}
+                <h2 class="mb-4 text-center">Login</h2>
+
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">Username</label>
+                    {{ form.username }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_password" class="form-label">Password</label>
+                    {{ form.password }}
+                </div>
+
+                {% if form.error or form.non_field_errors %}
+                    <div class="m-2 p-3 text-primary-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                        {% for field in form %}
+                            {{ field.errors }}
+                        {% endfor %}
+
+                        {{ form.non_field_errors}}
+                    </div>
+		        {% endif %}
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

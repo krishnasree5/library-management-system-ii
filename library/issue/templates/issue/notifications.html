@@ -3,23 +3,29 @@
 {% block title %}Notifications{% endblock %}
 
 {% block content %}
-<div>
-    <form method="get" action="{% url 'issue:notifications' %}">
-        <input type="text" name="query" value="{{query}}" placeholder="Search by user or book ">
-        <button type="submit">Search</button>
+<div class="container mt-4">
+    <form method="get" action="{% url 'issue:notifications' %}" class="mb-3">
+        <div class="input-group">
+            <input type="text" name="query" value="{{ query }}" class="form-control" placeholder="Search by user or book">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
     </form>
-    <a class="btn btn-primary" href="{% url 'issue:notifications' %}">Clear</a>
+
+    <a href="{% url 'issue:notifications' %}" class="btn btn-warning mb-3">Clear</a>
+
     {% for alert in alerts %}
-        <div style="background-color: aliceblue;">
-            <p>User: {{ alert.user }}</p>
-            <p>Book: {{ alert.book }}</p>
-            <p>Issue Date: {{ alert.issue_date }}</p>
-            <p>Return Date: {{ alert.return_date }}</p>
-            <p>Due: {{ alert.issue_date|timesince:alert.return_date }}</p>
-            {% if request.user.type == 'Staff' %}
-            <a href="{% url 'issue:edit' alert.id %}"><button>Edit</button></a>
-            <a href="{% url 'issue:delete' alert.id %}"><button>Delete</button></a>
-            {% endif %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">User: {{ alert.user }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Book: {{ alert.book }}</h6>
+                <p class="card-text">Issue Date: {{ alert.issue_date }}</p>
+                <p class="card-text">Return Date: {{ alert.return_date }}</p>
+                <p class="card-text">Due: {{ alert.issue_date|timesince:alert.return_date }}</p>
+                {% if request.user.type == 'Staff' %}
+                    <a href="{% url 'issue:edit' alert.id %}" class="btn btn-success me-2">Edit</a>
+                    <a href="{% url 'issue:delete' alert.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
         </div>
     {% endfor %}
 </div>

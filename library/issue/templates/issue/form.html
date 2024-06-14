@@ -1,11 +1,44 @@
 {% extends 'main/base.html' %}
 
-{% block title %}title{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <form method="post" action=".">
+<div class="container col-md-6 mt-4">
+    <form method="post" action="." class="p-4 border rounded shadow-sm">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <h2 class="mb-4 text-center">{{ title }}</h2>
+
+        {% if form.username %}
+        <div class="mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            {{ form.username }}
+        </div>
+        {% endif %}
+        {% if form.book_title %}
+        <div class="mb-3">
+            <label for="id_book_title" class="form-label">Book Title</label>
+            {{ form.book_title }}
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+            <label for="id_due" class="form-label">Due</label>
+            {{ form.due }}
+        </div>
+
+        {% if form.error or form.non_field_errors %}
+			<div class="m-2 p-3 text-primary-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+				{% for field in form %}
+					{{ field.errors }}
+				{% endfor %}
+
+				{{ form.non_field_errors}}
+			</div>
+		{% endif %}
+
+        <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
+</div>
 {% endblock %}
