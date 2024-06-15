@@ -70,8 +70,8 @@ def notifications(request):
     if query:
         alerts = alerts.filter(Q(user__username__icontains=query) | Q(book__title__icontains=query))
 
-    if request.user.type == 'Student':
-        alerts = Issue.objects.filter(Q(user=request.user))
+    if request.user.type == 'Non-staff':
+        alerts = alerts.filter(Q(user=request.user))
 
     return render(request, 'issue/notifications.html', {
         'query': query,

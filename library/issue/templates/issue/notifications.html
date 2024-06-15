@@ -20,7 +20,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">Book: {{ alert.book }}</h6>
                 <p class="card-text">Issue Date: {{ alert.issue_date }}</p>
                 <p class="card-text">Return Date: {{ alert.return_date }}</p>
-                <p class="card-text">Due: {{ alert.issue_date|timesince:alert.return_date }}</p>
+                <p class="card-text">Due: {{ alert.return_date|timesince }}</p>
                 {% if request.user.type == 'Staff' %}
                     <a href="{% url 'issue:edit' alert.id %}" class="btn btn-success me-2">Edit</a>
                     <a href="{% url 'issue:delete' alert.id %}" class="btn btn-danger">Delete</a>
