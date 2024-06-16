@@ -57,10 +57,10 @@ Library Management System is designed to automate library operations. It assists
 
 ## Images
 
-<img src="./project-images/1.png" width="400" height="400"><br>
-<img src="./project-images/2.png" width="400" height="400"><br>
-<img src="./project-images/3.png" width="400" height="400"><br>
-<img src="./project-images/4.png" width="400" height="400"><br>
-<img src="./project-images/5.png" width="400" height="400"><br>
-<img src="./project-images/6.png" width="400" height="400"><br>
-<img src="./project-images/7.png" width="400" height="400">
+<img src="./project-images/1.png" width="800" height="400"><br>
+<img src="./project-images/2.png" width="800" height="400"><br>
+<img src="./project-images/3.png" width="800" height="400"><br>
+<img src="./project-images/4.png" width="800" height="400"><br>
+<img src="./project-images/5.png" width="800" height="400"><br>
+<img src="./project-images/6.png" width="800" height="400"><br>
+<img src="./project-images/7.png" width="800" height="400">
